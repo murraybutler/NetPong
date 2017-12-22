@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 2a22b2514aeba4fbf944a2e94c7611a1
-timeCreated: 1513356516
+timeCreated: 1513821665
 licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ballPrefab: {fileID: 1807859314556194, guid: cdb916a95a9fd44eb9b31e5a1e5a4cfc,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
