@@ -8,6 +8,8 @@ TagManager:
   - Goal
   - Playa
   - Ball
+  - Score
+  - Floor
   layers:
   - Default
   - TransparentFX

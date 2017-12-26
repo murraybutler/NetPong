@@ -10,10 +10,14 @@ public class PlayerController : NetworkBehaviour {
 	public float zRange = 30f;
 
 	private Rigidbody ball;
+	private Rigidbody playa;
 	private Vector3 playaPos = new Vector3 (30, 1, 10);
+	private GameObject scores;
 
 	void Start() {
 		transform.Rotate(90,0,0);
+		scores = GameObject.FindGameObjectWithTag("Score");
+		playa = GetComponent<Rigidbody> ();
 	}
 
 	void Update()
@@ -30,8 +34,11 @@ public class PlayerController : NetworkBehaviour {
 		playaPos = new Vector3(Mathf.Clamp(xPos, -xRange, xRange), 1.05f, Mathf.Clamp(zPos,-zRange,0f));
 
 		transform.position = playaPos;
+		//playa.MovePosition(playaPos);
 
 		transform.Rotate(90,0,0);
+		scores.transform.Rotate (0,0,90);
+
 
 		//Debug.Log (curPos);
 
