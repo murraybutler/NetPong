@@ -9,22 +9,22 @@ public class PlayerController : NetworkBehaviour {
 	public float xRange = 9f;
 	public float zRange = 30f;
 
-	private Rigidbody ball;
-	private Rigidbody playa;
+	//private Transform ball;
+	//private Rigidbody playa;
 	private Vector3 playaPos = new Vector3 (30, 1, 10);
 	private GameObject scores;
 
 	void Start() {
-		transform.Rotate(90,0,0);
 		scores = GameObject.FindGameObjectWithTag("Score");
-		playa = GetComponent<Rigidbody> ();
+		//ball = GameObject.FindGameObjectWithTag("Ball").transform;
+		//playa = GetComponent<Rigidbody> ();
 	}
 
 	void Update()
 	{
 		if (!isLocalPlayer) {
 			//transform.position = Vector3.Lerp (transform.position,
-			//	readNetPos, 10f * Time.deltaTime);
+			//readNetPos, 10f * Time.deltaTime);
 			return;
 		}
 
@@ -38,6 +38,9 @@ public class PlayerController : NetworkBehaviour {
 
 		transform.Rotate(90,0,0);
 		scores.transform.Rotate (0,0,90);
+
+		// Have the player's camera follow the ball
+		//transform.LookAt (ball);
 
 
 		//Debug.Log (curPos);

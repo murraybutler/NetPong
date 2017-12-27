@@ -78,8 +78,8 @@ public class Ball : NetworkBehaviour {
 		resetter = true;
 		transform.position = startPos;
 
-		//currDir = Vector3.zero;
-		//currSpeed = 0f;
+		currDir = Vector3.zero;
+		currSpeed = 0f;
 		yield return new WaitForSeconds(3);
 
 		Start();
