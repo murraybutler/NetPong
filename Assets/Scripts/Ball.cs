@@ -5,9 +5,10 @@ using UnityEngine.Networking;
 
 public class Ball : NetworkBehaviour {
 
-	public float StartSpeed = 1f;
-	public float MaxSpeed = 100f;
-	public float SpeedIncrease = 20f;
+	public float StartSpeed = 1;
+	public float MaxSpeed = 100;
+	public float SpeedIncrease = 20;
+	public GameObject ballPrefab;
 
 	private float currSpeed;
 	private Vector3 currDir;
@@ -23,6 +24,15 @@ public class Ball : NetworkBehaviour {
 		startPos = new Vector3 (0, 2);
 	}
 
+	public override void OnStartServer() {
+		currSpeed = StartSpeed;
+		currDir = Random.insideUnitCircle.normalized;
+		startPos = new Vector3 (0, 2);
+		var rot = Quaternion.Euler (Random.Range (0, 180), Random.Range (0, 180), Random.Range (0, 180));
+		var ball = (GameObject)Instantiate (ballPrefab, startPos, rot);
+		NetworkServer.Spawn (ball);
+	}
+
 	//public override void OnStartServer () {
 	//	var ball = (GameObject)Instantiate (ballPrefab);
 	//	NetworkServer.Spawn (ball);
@@ -36,7 +46,7 @@ public class Ball : NetworkBehaviour {
 			
 		Vector3 mvDir = currDir * currSpeed * Time.deltaTime;
 		//Vector3 ballPos = new Vector3(Mathf.Clamp(mvDir.x, -xRange, xRange), 1f, Mathf.Clamp(mvDir.z,-zRange,zRange));
-		transform.Translate (new Vector3 (mvDir.x, 0f, mvDir.z));
+		transform.Translate (new Vector3 (mvDir.x, 0, mvDir.z));
 	}
 
 	void OnCollisionEnter(Collision coll) {
@@ -79,7 +89,7 @@ public class Ball : NetworkBehaviour {
 		transform.position = startPos;
 
 		currDir = Vector3.zero;
-		currSpeed = 0f;
+		currSpeed = 0;
 		yield return new WaitForSeconds(3);
 
 		Start();

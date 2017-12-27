@@ -13,6 +13,7 @@ public class PlayerController : NetworkBehaviour {
 	//private Rigidbody playa;
 	private Vector3 playaPos = new Vector3 (30, 1, 10);
 	private GameObject scores;
+	//private Vector3 readNetPos;
 
 	void Start() {
 		scores = GameObject.FindGameObjectWithTag("Score");
@@ -47,13 +48,13 @@ public class PlayerController : NetworkBehaviour {
 
 	}
 
-	void OnSerializeNetworkView(BitStream str) {
-		if (str.isWriting) {
-			Vector3 pos = transform.position;
-			str.Serialize (ref pos);
-			//readNetPos = pos;
-		}
-	}
+	//void OnSerializeNetworkView(BitStream str) {
+		//if (str.isWriting) {
+		//	Vector3 pos = transform.position;
+		//	str.Serialize (ref pos);
+		//	readNetPos = pos;
+		//}
+	//}
 
 	public override void OnStartLocalPlayer() {
 		GetComponent<MeshRenderer> ().material.color = Color.green;
